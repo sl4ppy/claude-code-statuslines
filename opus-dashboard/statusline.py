@@ -338,7 +338,7 @@ def main():
         if staged:
             txt += f" ●{staged}"
         if dirty:
-            txt += f" ✚{dirty}"
+            txt += f" +{dirty}"
         if g.get("ahead"):
             txt += f" ↑{g['ahead']}"
         if g.get("behind"):
@@ -394,6 +394,10 @@ def main():
     parts = [paint(" ctx", FG_MUTED), bar(used, bw, marker=CONTEXT_WARN)]
     parts.append(paint("  --" if used is None else f"{used:5.1f}%",
                        gradient(used) if used is not None else FG_FAINT, bold=True))
+    # Placed early on purpose: fit() drops from the end, and a warning that
+    # vanishes exactly when the row is busiest is worse than useless.
+    if used is not None and used >= CONTEXT_WARN:
+        parts.append(paint("⚠ /compact", C_BAD, bold=True))
     parts.append(paint(f"{human_tokens(total_in)}/{human_tokens(size)}", FG_MUTED))
 
     if total_in:
@@ -413,8 +417,6 @@ def main():
         # divided by the session-cumulative api duration to get a rate.
         parts.append(paint(f"last out {human_tokens(out_tok)}", FG_MUTED))
 
-    if used is not None and used >= CONTEXT_WARN:
-        parts.append(paint("  ⚠ /compact", C_BAD, bold=True))
     print(fit(parts, width))
 
     # ---- row 3: budget ---------------------------------------------------

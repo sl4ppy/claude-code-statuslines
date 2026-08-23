@@ -3,11 +3,12 @@
 A three-row, information-dense status line for Claude Code. Python 3, standard
 library only, no dependencies.
 
-```
- Opus 5 (1M context) ❯ ◆high ✻think ❯  ~/projects/acme-api ❯  master        my-session  v2.1.239
-ctx ████▌░░░░░░░░░╎░░  31.0% 306.7k/1.00M │ cache 100% r305.8k w826 new2 │ last out 730
- 5h █░░░░  2% ↻3h32m   7d ████░  41% ↻3d0h   $34.1817 1.68/h   20h21m api 6%   +632 -175
-```
+![opus-dashboard status line](docs/statusline.png)
+
+Three representative states: a normal session, one with the context window
+filling up and an approved PR, and an API user with no rate-limit data. Colours
+and bars are the point, so the screenshot is the real reference — the layout
+also degrades gracefully as the terminal narrows.
 
 ## Rows
 
