@@ -8,9 +8,12 @@ the script is written in.
 
 ![opus-dashboard](opus-dashboard/docs/statusline.png)
 
+![fable-meter](fable-meter/docs/statusline.png)
+
 | Status line | Language | Highlights |
 | --- | --- | --- |
 | [`opus-dashboard`](opus-dashboard/) | Python 3 (stdlib only) | 3 rows, powerline, gradient bars, rate limits, cache efficiency |
+| [`fable-meter`](fable-meter/) | Python 3 (stdlib only) | 2 rows, tuned for Claude Fable 5: live turn timer, per-turn spend, sparkline trends, effort dial |
 
 ## Installing any of them
 
