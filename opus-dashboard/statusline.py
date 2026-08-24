@@ -26,6 +26,12 @@ import sys
 import time
 import unicodedata
 
+# Claude Code reads the status line as UTF-8, but on Windows Python's stdout
+# defaults to the console code page (cp1252), which can't encode the glyphs
+# used here. Force UTF-8 regardless of the host encoding.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 # ------------------------------------------------------------------ config --
 
 STYLE = os.environ.get("CC_STATUSLINE_STYLE", "powerline")  # powerline | thin

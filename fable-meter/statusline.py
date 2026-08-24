@@ -30,6 +30,12 @@ import subprocess
 import sys
 import time
 
+# Claude Code reads the status line as UTF-8, but on Windows Python's stdout
+# defaults to the console code page (cp1252), which can't encode the glyphs
+# used here. Force UTF-8 regardless of the host encoding.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 # ------------------------------------------------------------------ config --
 
 MAX_SAMPLES = 48          # ~24 min of history at refreshInterval 30
